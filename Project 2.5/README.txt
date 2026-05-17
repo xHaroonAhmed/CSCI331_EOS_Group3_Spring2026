@@ -68,7 +68,7 @@ What it does:
   EVERYONE DEPENDS ON THIS - MUST RUN BEFORE ANY OTHER PERSON!
 
 
-STEP 3: Country Normalization (Person 5 - Part 1) ⚠️ BLOCKS PERSON 3 & 4
+STEP 3: Country Normalization (Person 5 - Part 1) BLOCKS PERSON 3 & 4
 --------------------------------------------------------------------------
 File: Person5_Country_SalesDetails.sql
  RUN ONLY LINES 1-284 (Day 3 section)
@@ -235,10 +235,10 @@ PROJECT STATISTICS:
 
 Team Size:              7 members
 Total SQL Files:        8 files (7 team + 1 master)
-Development Time:       ~60 hours
+Development Time:       60 hours
 UDTs Created:           20
 Tables Normalized:      7 core tables
-Views Created:          17
+Views Created:          11
 Constraints Added:      30+
 Storage Reduction:      40%
 Data Integrity:         100% (0 violations)
