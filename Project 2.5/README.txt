@@ -18,7 +18,6 @@ FOLDER STRUCTURE:
 
 Project25_FinalSubmission/
 ├── README.txt                                  (this file)
-├── MASTER_Integration_Script.sql               (runs all scripts in order)
 ├── PrestigeCarsDatabaseScript.sql              (original database - run FIRST)
 ├── Person1_Infrastructure.sql                  (Process & DbSecurity schemas)
 ├── Person2_UDTs.sql                            (20 User Defined Types)
@@ -57,7 +56,7 @@ What it does:
   - Logs infrastructure creation in WorkflowSteps
 
 
-STEP 2: User Defined Types (Person 2) ⚠️ CRITICAL - BLOCKS EVERYONE!
+STEP 2: User Defined Types (Person 2)  CRITICAL - BLOCKS EVERYONE!
 -----------------------------------------------------------------------
 File: Person2_UDTs.sql
 What it does:
@@ -66,13 +65,13 @@ What it does:
   - Creates [Utils] schema
   - Creates Utils.uvw_FindColumnDefinition view
   
-⚠️ EVERYONE DEPENDS ON THIS - MUST RUN BEFORE ANY OTHER PERSON!
+  EVERYONE DEPENDS ON THIS - MUST RUN BEFORE ANY OTHER PERSON!
 
 
 STEP 3: Country Normalization (Person 5 - Part 1) ⚠️ BLOCKS PERSON 3 & 4
 --------------------------------------------------------------------------
 File: Person5_Country_SalesDetails.sql
-⚠️ RUN ONLY LINES 1-284 (Day 3 section)
+ RUN ONLY LINES 1-284 (Day 3 section)
 
 What it does:
   - Creates Data.SalesRegion table (3 regions)
@@ -80,7 +79,7 @@ What it does:
   - Applies UDTs to Country table
   - Migrates 10 countries
 
-⚠️ STOP AT LINE 284 - Do NOT run SalesDetails yet!
+  STOP AT LINE 284 - Do NOT run SalesDetails yet!
    Person 3 & 4 need Country table before they can complete.
 
 
@@ -97,8 +96,7 @@ What it does:
 
 STEP 5: Make, Model, Stock (Person 4)
 --------------------------------------
-File: Person4_Make_Model_Stock_FIXED.sql
-⚠️ USE THE FIXED VERSION - has UNIQUE constraint on Stock.StockCode
+File: Person4_Make_Model_Stock.sql
 
 What it does:
   - Creates Data.Make table with UDTs
@@ -107,15 +105,15 @@ What it does:
   - Adds FK: Make → Country (requires Person 5 Part 1 done!)
   - Adds FK: Model → Make
   - Adds FK: Stock → Model
-  - ⚠️ CRITICAL FIX: Adds UNIQUE constraint on Stock.StockCode
+  - Adds UNIQUE constraint on Stock.StockCode
      (This allows Person 5's SalesDetails FK to work!)
   - Migrates 26 makes, 100 models, 395 stock items
 
 
-STEP 6: SalesDetails (Person 5 - Part 2) ⚠️ REQUIRES PERSON 3 & 4 DONE
+STEP 6: SalesDetails (Person 5 - Part 2) REQUIRES PERSON 3 & 4 DONE
 ------------------------------------------------------------------------
 File: Person5_Country_SalesDetails.sql
-⚠️ RUN ONLY LINES 285-509 (Day 4-5 section)
+ RUN ONLY LINES 285-509 (Day 4-5 section)
 
 What it does:
   - Creates Data.SalesDetails table with UDTs
@@ -126,8 +124,7 @@ What it does:
 
 STEP 7: Views Part 1 (Person 6)
 --------------------------------
-File: Person6_Views_Part1_FIXED.sql
-⚠️ USE THE FIXED VERSION - has correct column names
+File: Person6_Views_Part1.sql
 
 What it does:
   - Creates DataTransfer.Sales2015 view
@@ -175,22 +172,6 @@ AFTER (Normalized Database):
 - Strong referential integrity
 - 40% storage reduction
 - 4x easier maintenance
-
-
-TROUBLESHOOTING:
-================
-
-Problem: "Invalid object name 'PrestigeCars.TableName'"
-Solution: Check schema name - should be [Reference].[TableName] not [PrestigeCars].[TableName]
-
-Problem: "Cannot insert NULL into UserAuthorizationKey"
-Solution: Check Person1_Infrastructure.sql - names must match exactly in INSERT and lookup
-
-Problem: "FK constraint failed - Stock.StockCode"
-Solution: Use Person4_Make_Model_Stock_FIXED.sql (has UNIQUE constraint)
-
-Problem: "Invalid column name 'PartsCost' or 'TransportInCost'"
-Solution: Use Person6_Views_Part1_FIXED.sql (correct column names)
 
 
 DATABASE BACKUP:
@@ -254,7 +235,6 @@ PROJECT STATISTICS:
 
 Team Size:              7 members
 Total SQL Files:        8 files (7 team + 1 master)
-Lines of Code:          ~2,500 lines
 Development Time:       ~60 hours
 UDTs Created:           20
 Tables Normalized:      7 core tables
@@ -262,14 +242,5 @@ Views Created:          17
 Constraints Added:      30+
 Storage Reduction:      40%
 Data Integrity:         100% (0 violations)
-
-
-CONTACT:
-========
-Project Manager: Andrew Laboy
-Class: CSCI-331 Database Systems
-Project: 2.5 - Database Normalization
-Submission Date: [Your Date]
-
 
 END OF README
