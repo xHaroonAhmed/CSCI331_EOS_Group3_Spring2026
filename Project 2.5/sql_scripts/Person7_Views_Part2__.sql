@@ -36,8 +36,7 @@ GO
 PRINT 'Created view Reference.SalesCategory'
 GO
 
-PRINT 'Reference.Staff kept as-is (it is the source table, no changes needed)'
-GO
+
 
 IF OBJECT_ID('Reference.StaffHierarchy', 'U') IS NOT NULL
 BEGIN
